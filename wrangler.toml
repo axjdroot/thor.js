@@ -7,7 +7,6 @@ pages_build_output_dir = ".vercel/output/static"
 binding = "DB"
 database_name = "thor-db"
 database_id = "2da233e7-1801-4da4-8164-83b09d679ab6"
-migrations_dir = "drizzle"
 
 [[kv_namespaces]]
 binding = "KV"
@@ -27,10 +26,6 @@ name = "INVENTORY_DO"
 class_name = "InventoryDurableObject"
 script_name = "thor-commerce-do"
 
-[[migrations]]
-tag = "v1"
-new_sqlite_classes = ["CartDurableObject", "InventoryDurableObject"]
-
 [[queues.producers]]
 binding = "ORDER_QUEUE"
 queue = "thor-order-events"
@@ -39,30 +34,9 @@ queue = "thor-order-events"
 binding = "EMAIL_QUEUE"
 queue = "thor-email-queue"
 
-[[queues.consumers]]
-queue = "thor-order-events"
-max_batch_size = 10
-max_batch_timeout = 5
-max_retries = 3
-dead_letter_queue = "thor-dlq"
-
-[[queues.consumers]]
-queue = "thor-email-queue"
-max_batch_size = 10
-max_batch_timeout = 5
-max_retries = 3
-dead_letter_queue = "thor-dlq"
-
 [ai]
 binding = "AI"
 
 [[analytics_engine_datasets]]
 binding = "ANALYTICS"
 dataset = "thor_events"
-
-[observability]
-enabled = true
-head_sampling_rate = 1
-
-[env.production]
-name = "thor-commerce-production"
