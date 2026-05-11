@@ -5,7 +5,7 @@ pages_build_output_dir = ".vercel/output/static"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "thor-db"
+database_name = "thor-js"
 database_id = "2da233e7-1801-4da4-8164-83b09d679ab6"
 
 [[kv_namespaces]]
