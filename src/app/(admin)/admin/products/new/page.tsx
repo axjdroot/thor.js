@@ -50,9 +50,9 @@ export default function ProductCreatePage() {
         body: JSON.stringify({ name: productName, currentDescription: description }),
         headers: { "Content-Type": "application/json" },
       });
-      const data = await res.json();
+      const data = await res.json() as any;
       console.log("AI Response:", data);
-      if (data.description) {
+      if (data && data.description) {
         setValue("description", data.description);
       }
     } catch (error) {
@@ -78,9 +78,9 @@ export default function ProductCreatePage() {
         method: "POST",
         body: formData,
       });
-      const data = await res.json();
+      const data = await res.json() as any;
       console.log("Upload Response:", data);
-      if (data.url) {
+      if (data && data.url) {
         const newMedia = [...media, { url: data.url, key: data.key }];
         setMedia(newMedia);
         setValue("images", newMedia.map(m => m.url));
